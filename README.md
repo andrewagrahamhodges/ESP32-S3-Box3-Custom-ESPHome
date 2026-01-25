@@ -76,8 +76,8 @@ Click [here](<https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/blob/mai
 
 *What are we currently building?*
 
-- No active development tasks at this time
-- Project is in stable/maintenance mode
+- Firmware updated to 2024.09.02 - currently testing
+- Awaiting user feedback on new firmware behavior
 
 ## Technical Decisions
 
@@ -100,11 +100,12 @@ Click [here](<https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/blob/mai
 
 *The immediate tasks for the next session:*
 
-1. [ ] Update `secrets.yaml` with WiFi credentials
-2. [ ] Build firmware: `./build.sh s3b.yaml`
-3. [ ] Flash via OTA: `./flash.sh --ota esp32-s3box-3.local`
-4. [ ] Verify device reconnects to Home Assistant
-5. [ ] Investigate continuous conversation workarounds or Home Assistant feature requests
+1. [x] ~~Update `secrets.yaml` with WiFi credentials~~
+2. [x] ~~Build firmware: `./build.sh s3b.yaml`~~
+3. [x] ~~Flash via OTA: `./flash.sh --ota esp32-s3box-3.local`~~
+4. [ ] Test firmware and report any issues (voice assistant, display, sensors, timers)
+5. [ ] Verify device reconnects to Home Assistant properly
+6. [ ] Investigate continuous conversation workarounds or Home Assistant feature requests
 
 ## Key File Mappings
 
@@ -135,8 +136,8 @@ Click [here](<https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/blob/mai
 | Has sensor dock | Yes (temperature, humidity, presence) |
 | API encryption | None (open) |
 | OTA password | None (open) |
-| Current firmware | 2024.09.01 (ESPHome 2024.12.2) |
-| Repo firmware | 2024.09.02 (requires ESPHome 2025.2.0+) |
+| Current firmware | **2024.09.02** (flashed 2026-01-25) |
+| Previous firmware | 2024.09.01 (ESPHome 2024.12.2) |
 
 ## Firmware Update Analysis
 
@@ -167,6 +168,7 @@ Click [here](<https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/blob/mai
 | 2026-01-25 | Added AI Context & Session State section to README for AI agent persistence |
 | 2026-01-25 | Created Docker-based build environment (docker-compose.yml, build.sh, flash.sh, secrets.yaml.example) |
 | 2026-01-25 | Analyzed current device config from HA, compared firmware versions, identified continuous conversation as key limitation |
+| 2026-01-25 | **Successfully flashed firmware 2024.09.02** via Docker build environment. Device now running new native audio pipeline. Testing in progress. |
 
 ## Known Issues / Bugs
 
@@ -201,4 +203,4 @@ Click [here](<https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/blob/mai
 
 ---
 
-*Last updated: 2026-01-25*
+*Last updated: 2026-01-25 (session wrapped up, firmware flashed, awaiting test results)*
