@@ -6,7 +6,7 @@ substitutions:
   name: esp32-s3box-3
   friendly_name: ESP32-S3-Box-3
 
-  external_media_player: your_media_player  ##change this to your external media player enity_id: do not include media_player.
+  external_media_player: living_room_speaker_2  ##change this to your external media player enity_id: do not include media_player.
   home_assistant_host: http://homeassistant.local:8123 ##change to the full url or IP of your HA server including port
   tts_voice_speed: "24000" #options #nabu casa "24000" #piper "16000" elevenlabs "44100" must include quotes
 
@@ -538,7 +538,7 @@ switch:
   - platform: gpio
     name: Speaker Enable
     id: speaker_enable
-    pin: 
+    pin:
       number: GPIO46
       ignore_strapping_warning: true
     restore_mode: ALWAYS_OFF
@@ -882,7 +882,7 @@ text:
     on_value:
       then:
         - lambda: |-
-            if (!id(notification_text).state.empty() && 
+            if (!id(notification_text).state.empty() &&
                 (id(previous_notification_text).empty() || id(notification_text).state != id(previous_notification_text))) {
               id(previous_notification_text) = id(notification_text).state;
               id(show_notification).execute();
@@ -2324,7 +2324,7 @@ display:
           int display_height = 240;
           int y = 60;                   // Starting Y position for text
           std::vector<std::string> lines;
-          
+
           // Split text into lines of max_chars_per_line
           std::string current_line;
           for (const char* p = text; *p != '\0'; ++p) {
@@ -2341,7 +2341,7 @@ display:
           if (!current_line.empty()) {
             lines.push_back(current_line);
           }
-      
+
           // Calculate the starting Y position to center the text vertically
           int total_height = lines.size() * line_height;
           y = (display_height - total_height) / 2;

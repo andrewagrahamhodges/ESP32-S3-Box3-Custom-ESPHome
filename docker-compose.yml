@@ -1,0 +1,12 @@
+services:
+  esphome:
+    image: esphome/esphome:latest
+    volumes:
+      - .:/config
+    working_dir: /config
+    network_mode: host
+    environment:
+      - ESPHOME_DASHBOARD_USE_PING=true
+    # Uncomment to run the ESPHome dashboard web UI
+    # command: dashboard /config
+    # Access at http://localhost:6052

@@ -65,3 +65,142 @@ Click [here](<https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/blob/mai
 
 ### I really hope you enjoy this project and I thank you for your support. If you have found this project useful and would like to buy me a coffee then the link is below ❤️<br>
 <a href="https://www.buymeacoffee.com/BigBobba" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+---
+
+# AI Context & Session State
+
+> **Note:** This section serves as persistent context for AI coding agents. It is updated at the end of each development session to maintain continuity across sessions.
+
+## Active Objectives
+
+*What are we currently building?*
+
+- Firmware updated to 2024.09.02 - currently testing
+- Awaiting user feedback on new firmware behavior
+
+## Technical Decisions
+
+*Why did we choose specific libraries or architectures?*
+
+| Decision | Rationale |
+|----------|-----------|
+| ESPHome framework | Native Home Assistant integration, OTA updates, YAML-based configuration |
+| LVGL for display | Hardware-accelerated graphics, touch support, efficient memory usage |
+| Micro Wake Word | On-device wake word detection reduces latency and cloud dependency |
+| Modular YAML structure | `s3b.yaml` (with sensors) and `s3b_no_sensors.yaml` (without) for flexibility |
+
+## Current Blockers
+
+*What is stopping progress right now?*
+
+- **Continuous conversation not supported**: The device cannot hold a conversation with Gemini/ChatGPT - it's limited to single question/answer exchanges. Each interaction requires a wake word. This is a limitation of Home Assistant Assist pipeline, not the ESP32 firmware.
+
+## Next Steps
+
+*The immediate tasks for the next session:*
+
+1. [x] ~~Update `secrets.yaml` with WiFi credentials~~
+2. [x] ~~Build firmware: `./build.sh s3b.yaml`~~
+3. [x] ~~Flash via OTA: `./flash.sh --ota esp32-s3box-3.local`~~
+4. [ ] Test firmware and report any issues (voice assistant, display, sensors, timers)
+5. [ ] Verify device reconnects to Home Assistant properly
+6. [ ] Investigate continuous conversation workarounds or Home Assistant feature requests
+
+## Key File Mappings
+
+*Which files hold the core logic for the current feature?*
+
+| File | Purpose |
+|------|---------|
+| `s3b.yaml` | Main configuration for S3 Box 3 with sensor dock |
+| `s3b_no_sensors.yaml` | Configuration for S3 Box 3 without sensor dock |
+| `s3b_import.yaml` | Shared imports and common configuration |
+| `docker-compose.yml` | Docker-based ESPHome build environment |
+| `build.sh` | Script to compile YAML to firmware .bin |
+| `flash.sh` | Script to flash firmware via USB or OTA |
+| `secrets.yaml.example` | Template for WiFi credentials |
+| `instructions/installation guide.md` | Step-by-step installation instructions |
+| `instructions/make it your own.md` | Customization guide for users |
+
+## Device Configuration
+
+*Current device settings discovered during this session:*
+
+| Setting | Value |
+|---------|-------|
+| Device name | `esp32-s3box-3` |
+| Friendly name | `ESP32-S3-Box-3` |
+| External media player | `living_room_speaker_2` |
+| HA host | `http://homeassistant.local:8123` |
+| Has sensor dock | Yes (temperature, humidity, presence) |
+| API encryption | None (open) |
+| OTA password | None (open) |
+| Current firmware | **2024.09.02** (flashed 2026-01-25) |
+| Previous firmware | 2024.09.01 (ESPHome 2024.12.2) |
+
+## Firmware Update Analysis
+
+*Comparison of current vs repo firmware:*
+
+| Aspect | Current (2024.09.01) | Repo (2024.09.02) |
+|--------|---------------------|-------------------|
+| Audio system | `adf_pipeline` (external) | Native ESPHome `speaker`/`media_player` |
+| ESP-IDF | 4.4.x | 5.4.0 |
+| Min ESPHome | 2024.9.0 | 2025.2.0 |
+| External deps | `esphome_audio` repo | None |
+
+**Benefits of updating:**
+- No external audio component dependency (more stable)
+- New mixer speaker architecture for better audio
+- Piper TTS crash fix
+- Built-in timer sounds (no HTTP fetch)
+- Better buffer stability
+
+**Note:** Update is worthwhile for stability but won't enable continuous conversation.
+
+## Session Log
+
+*Summary of recent development sessions:*
+
+| Date | Summary |
+|------|---------|
+| 2026-01-25 | Added AI Context & Session State section to README for AI agent persistence |
+| 2026-01-25 | Created Docker-based build environment (docker-compose.yml, build.sh, flash.sh, secrets.yaml.example) |
+| 2026-01-25 | Analyzed current device config from HA, compared firmware versions, identified continuous conversation as key limitation |
+| 2026-01-25 | **Successfully flashed firmware 2024.09.02** via Docker build environment. Device now running new native audio pipeline. Testing in progress. |
+
+## Known Issues / Bugs
+
+*Bugs found but not yet fixed:*
+
+- **Continuous conversation**: Device requires wake word for every interaction. Limitation is in HA Assist pipeline, not firmware. No current workaround available.
+
+---
+
+## AI Session Prompts
+
+*Use these prompts to manage AI coding sessions:*
+
+### Wrap Up Prompt (End of Session)
+> "We are wrapping up for the day. I need you to perform a 'State Dump' into the `README.md` under the 'AI Context & Session State' section.
+> 
+> Please:
+> 1. Summarize exactly what we accomplished today.
+> 2. Document any changes made to the project structure or logic that might not be obvious.
+> 3. Explicitly list the **'Next Steps'** so that when I return tomorrow, you (or another AI) will know exactly where to pick up.
+> 4. Mention any bugs we found but didn't fix yet.
+> 
+> Once the README is updated, provide a brief summary of the status here and say goodbye."
+
+### Pick Up Prompt (Start of Session)
+> "We are starting a new session. Please read the `README.md` file, specifically the 'AI Context & Session State' section, to understand the current state of the project, recent progress, and the planned next steps.
+> 
+> Once you have processed the context:
+> 1. Briefly summarize your understanding of our current goal.
+> 2. Propose the first task from the 'Next Steps' list that we should tackle right now.
+> 3. List the files you'll need to examine to get started."
+
+---
+
+*Last updated: 2026-01-25 (session wrapped up, firmware flashed, awaiting test results)*
